@@ -22,6 +22,26 @@ void RightShift(int Board[4][4]) {
 }
 
 
+void LeftShift(int Board[4][4]) {
+    for (int Row = 0 ; Row < 4 ; Row++) {
+        int Pos = 0; 
+
+        for (int i = 0; i < 4; ++i) {
+            if (Board[Row][i] != 0 && i != 0) {
+                Board[Row][Pos] = Board[Row][i];
+                if (Pos != i) {
+                    Board[Row][i] = 0;
+                }
+                Pos++; 
+
+            } else if (Board[Row][i] != 0) {
+                Pos++;
+            }
+        }
+    }
+}
+
+
 void PrintMenu() {
 	int WIDTH = 35 ;
 	int LENGTH = 9 ; 
