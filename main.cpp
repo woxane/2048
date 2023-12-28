@@ -1,6 +1,27 @@
 #include <iostream> 
 
 
+void RightShift(int Board[4][4]) {
+	for (int Row = 0; Row < 4; Row++) {
+		int Pos = 0;
+
+		for (int i = 3; i >= 0; --i) {
+			if (Board[Row][i] != 0 && i != 3) {
+				Board[Row][3 - Pos] = Board[Row][i]; 
+
+				if (3 - Pos != i) {
+					Board[Row][i] = 0 ;
+				}
+				Pos++ ;
+			}
+			else if (Board[Row][i] != 0){
+				Pos++ ;
+			}
+		}
+	}
+}
+
+
 void PrintMenu() {
 	int WIDTH = 35 ;
 	int LENGTH = 9 ; 
