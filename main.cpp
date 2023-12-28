@@ -73,6 +73,36 @@ void UpShift(int Board[4][4]) {
 
 
 
+void downShift(int Board[4][4]) {
+    for (int j = 0 ; j < 4 ; j++) {
+        int Column[4];
+
+        for (int i = 0 ; i < 4 ; i++) {
+            Column[i] = Board[i][j];
+        }
+
+        int Pos = 0;
+
+        for (int i = 3 ; i >= 0 ; i--) {
+            if (Column[i] != 0 && i != 3) {
+                Column[3 - Pos] = Column[i] ;
+                if (3 - Pos != i) {
+                    Column[i] = 0 ;
+                }
+                Pos++ ;
+
+            } else if (Column[i] != 0) {
+                Pos++ ;
+            }
+        }
+
+        for (int i = 0 ; i < 4 ; i++) {
+            Board[i][j] = Column[i] ;
+        }
+    }
+}
+
+
 void PrintMenu() {
 	int WIDTH = 35 ;
 	int LENGTH = 9 ; 
