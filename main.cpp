@@ -194,6 +194,98 @@ void PrintMenu() {
 
 }
 
+void DrawBoard(int Board[4][4]) {
+	int CUBE_WIDTH = 9 ; 
+	int CUBE_LENGTH = 5 ;
+
+	int BOARD_WIDTH = 39 ; // 4 * CUBE_WIDTH + 4 - 1 ; 
+	int BOARD_LENGTH = 23 ; // 4 * CUBE_LENGTH + 4 - 1 ;  
+
+	for (int Col = 0 ; Col < BOARD_LENGTH ; Col++ ) {
+		if (Col % 2 != 0) {
+			std::cout << std::endl ; 
+			continue ; 
+		} 
+		for (int Row = 0 ; Row < BOARD_WIDTH ; Row++ ) {
+
+			// Up Part + 
+			if (Col % 6 == 0 ) {
+				// Left Part 
+				if (Row % 10 == 0) {
+					std::cout << "\u250F" ; 
+				// Right Part 
+				} else if (Row % 10 == 8) {
+					std::cout << "\u2513" << " " ; 
+					Row++ ; 
+				// Middle Part 
+				} else if (Row % 10 > 0 & Row % 10 < 8) {
+					std::cout << "\u2501" ;
+				}
+
+			// Mid Part +
+			} else if (Col % 6 == 2 ) {
+				// Left Part 
+				if (Row % 10 == 0) {
+					std::cout << "\u2503" ;  
+				// Right Part 
+				} else if (Row % 10 == 8) {
+					std::cout << "\u2503" << " " ;  
+					Row++ ; 
+
+				} else {
+					int i = Col / 6 ; 
+					int j = Row / 10 ; 
+					int Num = Board[i][j] ; 
+					int NumLength= (std::to_string(Board[i][j])).length() ; 
+					
+					// WS = White Space 
+					int LeftWS = (CUBE_WIDTH - NumLength - 2) / 2 ; 
+					int RightWS = CUBE_WIDTH - NumLength - 2 - LeftWS ; 
+
+					for (int temp = 0 ; temp < LeftWS ; temp++) {
+						std::cout << " " ; 
+						Row++ ; 
+					} 
+
+					std::cout << Num ; 
+					Row += NumLength ; 
+
+					for (int temp = 0 ; temp < RightWS ; temp++) {
+						std::cout << " " ; 
+						Row++ ; 
+					}
+
+					Row-- ;
+				}
+
+			// Down Part +
+			} else if (Col % 6 == 4) {
+				// Left Part 
+				if (Row % 10 == 0) {
+					std::cout << "\u2517" ; 
+				// Right Part 
+				} else if (Row % 10 == 8) {
+					std::cout << "\u251B" << " " ; 
+					Row++ ;   
+
+				} else if (Row % 10 > 0 & Row % 10 < 8) {
+					std::cout << "\u2501" ;
+				} 
+			} 
+			
+
+		}
+		std::cout << std::endl ;
+
+	}
+
+
+
+
+}
+
+
+
 int main() {
 
 	return 0 ;
