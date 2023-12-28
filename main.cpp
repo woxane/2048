@@ -1,4 +1,5 @@
 #include <iostream> 
+#include "utils.h"
 
 
 void RightShift(int Board[4][4]) {
@@ -284,6 +285,36 @@ void DrawBoard(int Board[4][4]) {
 
 }
 
+
+void NewGame() {
+	// XXX The final version has the random board game 
+    int ExampleBoardGame[4][4] = {{0, 0, 0, 0}, {2, 0, 0, 2}, {16, 0, 0, 0}, {0, 0, 2, 16}};		
+
+	while (true) {
+		Cls() ; 
+		DrawBoard(ExampleBoardGame) ; 
+		char Input = Getch() ; 
+
+		if (Input == 'w') {
+			UpShift(ExampleBoardGame) ; 
+
+		} else if (Input == 'a') {
+			LeftShift(ExampleBoardGame) ; 
+
+		} else if (Input == 's') {
+			downShift(ExampleBoardGame) ; 
+
+		} else if (Input == 'd') {
+			RightShift(ExampleBoardGame) ; 
+
+		} else {
+			return ; 
+		}
+
+	}
+
+
+} 
 
 
 int main() {
