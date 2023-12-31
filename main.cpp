@@ -23,6 +23,18 @@ void RightShift(int Board[4][4]) {
 }
 
 
+void RightSum(int Board[4][4]) {
+	for (int i = 0 ; i < 4 ; i++) {
+		for (int j = 3 ; j > 0 ; j--) {
+			if (Board[i][j] == Board[i][j - 1] & Board[i][j] != 0) {
+				Board[i][j] *= 2 ;
+				Board[i][j - 1] = 2 ;
+			}
+		}
+	}
+}
+
+
 void LeftShift(int Board[4][4]) {
     for (int Row = 0 ; Row < 4 ; Row++) {
         int Pos = 0; 
