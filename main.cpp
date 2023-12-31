@@ -280,6 +280,10 @@ void DrawBoard(int Board[4][4]) {
 	int BOARD_WIDTH = 39 ; // 4 * CUBE_WIDTH + 4 - 1 ; 
 	int BOARD_LENGTH = 23 ; // 4 * CUBE_LENGTH + 4 - 1 ;  
 
+
+	std::cout << std::endl << "Score : " << Score(Board) << std::endl ; 
+
+
 	for (int Col = 0 ; Col < BOARD_LENGTH ; Col++ ) {
 		if (Col % 2 != 0) {
 			std::cout << std::endl ; 
