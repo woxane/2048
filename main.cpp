@@ -369,14 +369,22 @@ void NewGame() {
 
 		if (Input == 'w') {
 			UpShift(ExampleBoardGame) ; 
+			UpSum(ExampleBoardGame) ; 
+			UpShift(ExampleBoardGame) ; 
 
 		} else if (Input == 'a') {
+			LeftShift(ExampleBoardGame) ; 
+			LeftSum(ExampleBoardGame) ; 
 			LeftShift(ExampleBoardGame) ; 
 
 		} else if (Input == 's') {
 			downShift(ExampleBoardGame) ; 
+			DownSum(ExampleBoardGame) ; 
+			downShift(ExampleBoardGame) ; 
 
 		} else if (Input == 'd') {
+			RightShift(ExampleBoardGame) ; 
+			RightSum(ExampleBoardGame) ; 
 			RightShift(ExampleBoardGame) ; 
 
 		} else {
