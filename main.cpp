@@ -247,9 +247,15 @@ void DrawBoard(int Board[4][4]) {
 						std::cout << " " ; 
 						Row++ ; 
 					} 
+					
+					if (Num == 0) {
+						std::cout << " " ; 
+						Row++ ; 
 
-					std::cout << Num ; 
-					Row += NumLength ; 
+					} else {
+						std::cout << Num ; 
+						Row += NumLength ; 
+					}
 
 					for (int temp = 0 ; temp < RightWS ; temp++) {
 						std::cout << " " ; 
