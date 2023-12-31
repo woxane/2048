@@ -455,37 +455,41 @@ void DrawBoard(int Board[4][4]) {
 
 
 void NewGame() {
-	// XXX The final version has the random board game 
-    int ExampleBoardGame[4][4] = {{0, 0, 0, 0}, {2, 0, 0, 2}, {16, 0, 0, 0}, {0, 0, 2, 16}};		
+	int BoardGame[4][4] = {{0,0,0,0} , {0,0,0,0} , {0,0,0,0} , {0,0,0,0}} ; 
+	RandomBoard(BoardGame) ; 
+
 
 	while (true) {
 		Cls() ; 
-		DrawBoard(ExampleBoardGame) ; 
+		DrawBoard(BoardGame) ; 
 		char Input = Getch() ; 
 
 		if (Input == 'w') {
-			UpShift(ExampleBoardGame) ; 
-			UpSum(ExampleBoardGame) ; 
-			UpShift(ExampleBoardGame) ; 
+			UpShift(BoardGame) ; 
+			UpSum(BoardGame) ; 
+			UpShift(BoardGame) ; 
 
 		} else if (Input == 'a') {
-			LeftShift(ExampleBoardGame) ; 
-			LeftSum(ExampleBoardGame) ; 
-			LeftShift(ExampleBoardGame) ; 
+			LeftShift(BoardGame) ; 
+			LeftSum(BoardGame) ; 
+			LeftShift(BoardGame) ; 
 
 		} else if (Input == 's') {
-			downShift(ExampleBoardGame) ; 
-			DownSum(ExampleBoardGame) ; 
-			downShift(ExampleBoardGame) ; 
+			downShift(BoardGame) ; 
+			DownSum(BoardGame) ; 
+			downShift(BoardGame) ; 
 
 		} else if (Input == 'd') {
-			RightShift(ExampleBoardGame) ; 
-			RightSum(ExampleBoardGame) ; 
-			RightShift(ExampleBoardGame) ; 
+			RightShift(BoardGame) ; 
+			RightSum(BoardGame) ; 
+			RightShift(BoardGame) ; 
 
 		} else {
 			return ; 
 		}
+
+		RandomBoard(BoardGame , 1) ; 
+
 
 	}
 
