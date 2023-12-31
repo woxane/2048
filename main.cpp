@@ -2,6 +2,18 @@
 #include "utils.h"
 
 
+int Score(int Board[4][4]) {
+	int Sum = 0 ; 
+	for (int i = 0 ; i < 4 ; i++) {
+		for (int j = 0 ; j < 4 ; j++) {
+			Sum += Board[i][j] ; 
+		}
+	}
+
+	return Sum ; 
+}
+
+
 void RightShift(int Board[4][4]) {
 	for (int Row = 0; Row < 4; Row++) {
 		int Pos = 0;
