@@ -1,5 +1,10 @@
 #include <iostream> 
+#include <random> 
+#include <chrono>
 #include "utils.h"
+
+int MAIN_NUMBERS[4] = {2,2,2,4} ;
+
 
 
 int Score(int Board[4][4]) {
@@ -11,6 +16,18 @@ int Score(int Board[4][4]) {
 	}
 
 	return Sum ; 
+}
+
+int RandomNumber() {
+	std::mt19937 Generate(static_cast<std::mt19937::result_type>(
+		std::chrono::high_resolution_clock::now().time_since_epoch().count()
+		));
+
+	std::uniform_int_distribution Index(0 , 3);	
+	int RandomIndex = Index(Generate) ; 
+
+	return MAIN_NUMBERS[RandomIndex] ; 
+
 }
 
 
