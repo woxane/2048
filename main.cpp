@@ -28,7 +28,7 @@ void RightSum(int Board[4][4]) {
 		for (int j = 3 ; j > 0 ; j--) {
 			if (Board[i][j] == Board[i][j - 1] & Board[i][j] != 0) {
 				Board[i][j] *= 2 ;
-				Board[i][j - 1] = 2 ;
+				Board[i][j - 1] = 0 ;
 			}
 		}
 	}
@@ -146,6 +146,27 @@ void downShift(int Board[4][4]) {
             Board[i][j] = Column[i] ;
         }
     }
+}
+
+void DownSum(int Board[4][4]) {
+	for (int Row = 0 ; Row < 4 ; Row++) {
+		int Column[4] ; 
+
+		for (int Col = 0 ; Col < 4 ; Col++) {
+			Column[Col] = Board[Col][Row] ; 
+		}
+
+		for (int j = 3 ; j > 0 ; j--) {
+			if (Column[j] == Column[j - 1] & Column[j] != 0 ) {
+				Column[j] *= 2 ; 
+				Column[j - 1] = 0 ;  
+			}
+		}
+
+		for (int i = 0 ; i < 4 ; i++) {
+			Board[i][Row] = Column[i] ; 
+		}
+	} 	
 }
 
 
