@@ -42,6 +42,18 @@ void LeftShift(int Board[4][4]) {
     }
 }
 
+void (LeftSum(int Board[4][4])) {
+	for (int i = 0 ; i < 4 ; i++) {
+		for (int j = 0 ; j < 3 ; j++) {
+			if (Board[i][j] == Board[i][j + 1] & Board[i][j] != 0) {
+				Board[i][j] *= 2 ; 
+				Board[i][j + 1] = 0 ;
+			}	
+		}
+	}
+}
+
+
 
 void UpShift(int Board[4][4]) {
     for (int j = 0 ; j < 4 ; j++) {
