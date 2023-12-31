@@ -23,11 +23,74 @@ int RandomNumber() {
 		std::chrono::high_resolution_clock::now().time_since_epoch().count()
 		));
 
-	std::uniform_int_distribution Index(0 , 3);	
+	std::uniform_int_distribution<int> Index(0 , 3);	
 	int RandomIndex = Index(Generate) ; 
 
 	return MAIN_NUMBERS[RandomIndex] ; 
 
+}
+
+void RandomBoard(int Board[4][4], int Times = 2) {
+    int size = 0;
+    int** EmptyLocs = nullptr;
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (Board[i][j] == 0) {
+                int** Temp = new int*[size + 1];
+
+                for (int x = 0; x < size; x++) {
+                    Temp[x] = new int[2];
+                    for (int y = 0; y < 2; y++) {
+                        Temp[x][y] = EmptyLocs[x][y];
+                    }
+                    delete[] EmptyLocs[x];
+                }
+                Temp[size] = new int[2];
+                Temp[size][0] = i;
+                Temp[size][1] = j;
+
+                delete[] EmptyLocs;
+
+                size++;
+
+                EmptyLocs = new int*[size];
+                for (int x = 0; x < size; x++) {
+                    EmptyLocs[x] = new int[2];
+                    for (int y = 0; y < 2; y++) {
+                        EmptyLocs[x][y] = Temp[x][y];
+                    }
+                    delete[] Temp[x];
+                }
+
+                delete[] Temp;
+            }
+        }
+    }
+
+
+	for (int time = 0 ; time < Times ; time++) {
+		std::mt19937 Generate(static_cast<std::mt19937::result_type>(
+		std::chrono::high_resolution_clock::now().time_since_epoch().count()
+		));
+
+		std::uniform_int_distribution<int> Index(0 , size - 1);
+		int RandomIndex = Index(Generate) ;
+
+		int* RandomLoc = new int[2];
+		RandomLoc[0] = EmptyLocs[RandomIndex][0];
+		RandomLoc[1] = EmptyLocs[RandomIndex][1];
+
+		Board[RandomLoc[0]][RandomLoc[1]] = RandomNumber();
+
+
+	}
+
+
+    for (int i = 0; i < size; i++) {
+        delete[] EmptyLocs[i];
+    }
+    delete[] EmptyLocs;
 }
 
 
