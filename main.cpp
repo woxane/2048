@@ -576,6 +576,25 @@ void NewGame() {
 
 
 int main() {
+	PrintMenu() ; 
+	int Choose ;
+
+	std::cin >> Choose ; 
+
+	switch (Choose) {
+		case 1 : 
+			NewGame() ;
+			break ;  
+		
+		case 2 :
+			LeaderboardRead() ; 
+			break ; 
+		
+		case 3 : 
+			return 0 ; 
+
+	}
+
 
 	return 0 ;
 } 
