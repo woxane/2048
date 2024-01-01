@@ -562,6 +562,7 @@ void NewGame() {
 			RightShift(BoardGame) ; 
 
 		} else {
+			LeaderboardAdd(Score(BoardGame)) ; 
 			return ; 
 		}
 
