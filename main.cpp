@@ -343,6 +343,7 @@ void PrintMenu() {
 	int WIDTH = 35 ;
 	int LENGTH = 9 ; 
 
+	Cls() ;
 
 	for (int Col = 0 ; Col < LENGTH ; Col++) {
 		// Horizontal Line Parts :
@@ -577,23 +578,21 @@ void NewGame() {
 
 int main() {
 	PrintMenu() ; 
-	int Choose ;
+	char Choose = int(Getch());
 
-	std::cin >> Choose ; 
+	if (Choose == '1') {
+		NewGame() ; 
 
-	switch (Choose) {
-		case 1 : 
-			NewGame() ;
-			break ;  
-		
-		case 2 :
-			LeaderboardRead() ; 
-			break ; 
-		
-		case 3 : 
-			return 0 ; 
+	} else if (Choose == '2') {
+		Cls() ; 
+		LeaderboardRead() ; 
 
+	} else if (Choose == '3') {
+		return 0 ; 
+	} else {
+		std::cout << "ERR !" ;
 	}
+
 
 
 	return 0 ;
