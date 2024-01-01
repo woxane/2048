@@ -2,6 +2,9 @@
 #include <random> 
 #include <chrono>
 #include <fstream>
+#include <algorithm>
+#include <iterator>
+#include <string>
 #include "utils.h"
 
 int MAIN_NUMBERS[4] = {2,2,2,4} ;
@@ -31,6 +34,64 @@ void LeaderboardAdd(int Score) {
 	Leaderboard << Score  << '\n'; 
 
 	return ;  
+}
+
+
+void LeaderboardRead() {
+	// Assume that the name of the file is Leaderboard.txt
+	int size = 0 ; 
+	int *Scores = nullptr ; 
+
+	std::ifstream Leaderboard("Leaderboard.txt") ;
+
+	if (!Leaderboard){
+        std::cerr << "FILE ERROR !";
+        return ;
+    } 
+
+	while (Leaderboard) {
+		int Score ; 
+		Leaderboard >> Score ; 
+		int *Temp = new int[size + 1] ; 
+
+		for (int i = 0 ; i < size ; i++) {
+			Temp[i] = Scores[i] ; 
+		}
+
+		Temp[size] = Score ; 
+
+		delete[] Scores ; 
+
+		size++ ; 
+
+		Scores = new int[size] ; 
+
+		for (int i = 0 ; i < size ; i++) {
+			Scores[i] = Temp[i] ; 
+		}
+
+		delete[] Temp ; 
+	}
+
+	if (size == 0) {
+		std::cout << "There isn't any saved match for you !" << std::endl ; 	
+		return ; 
+
+	}
+
+	std::sort(&Scores[0] , &Scores[size]) ; 
+
+	for (int i = 1 ; i <= size ; i++) {
+		std::cout << i << ") " <<  Scores[i - 1] << std::endl ; 
+
+	}
+
+
+	Leaderboard.close() ; 
+	delete[] Scores ; 
+
+	return ; 
+
 }
 
 
