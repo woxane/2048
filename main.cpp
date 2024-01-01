@@ -1,6 +1,7 @@
 #include <iostream> 
 #include <random> 
 #include <chrono>
+#include <fstream>
 #include "utils.h"
 
 int MAIN_NUMBERS[4] = {2,2,2,4} ;
@@ -17,6 +18,21 @@ int Score(int Board[4][4]) {
 
 	return Sum ; 
 }
+
+
+void LeaderboardAdd(int Score) {
+	std::ofstream Leaderboard("Leaderboard.txt" , std::ios::app) ;
+
+	if (!Leaderboard){
+        std::cerr << "FILE ERROR !";
+        return ;
+    } 
+
+	Leaderboard << Score  << '\n'; 
+
+	return ;  
+}
+
 
 int RandomNumber() {
 	std::mt19937 Generate(static_cast<std::mt19937::result_type>(
