@@ -8,6 +8,8 @@
 #include "utils.h"
 
 int MAIN_NUMBERS[4] = {2,2,2,4} ;
+int MAX_REDO = 4 ;
+int USED_REDO = 0 ; 
 
 //LB = Leaderboard
 struct LB {
@@ -458,7 +460,7 @@ void DrawBoard(int Board[4][4]) {
 
 
 	std::cout << std::endl << "Score : " << Score(Board) << std::endl ; 
-
+	std::cout << "Redo : " << MAX_REDO - USED_REDO  << std::endl ; 
 
 	for (int Col = 0 ; Col < BOARD_LENGTH ; Col++ ) {
 		if (Col % 2 != 0) {
@@ -596,7 +598,12 @@ void NewGame() {
 			RightShift(BoardGame) ; 
 
 		} else if (Input == 'r')  {
-			Redo(BoardGame , LastBoardGame) ; 		
+			if (USED_REDO < MAX_REDO ) {
+				Redo(BoardGame , LastBoardGame) ; 
+				USED_REDO++ ; 
+
+			} 
+				
 			continue ; 			
 
 		} else { 
