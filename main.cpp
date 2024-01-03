@@ -41,6 +41,10 @@ void LeaderboardAdd(LB Data) {
 	return ;  
 }
 
+bool Compare(const LB& a, const LB& b) {
+    return a.score > b.score; // sort in descending order of score
+}
+
 
 void LeaderboardRead() {
 	// Assume that the name of the file is Leaderboard.txt
@@ -85,7 +89,7 @@ void LeaderboardRead() {
 
 	}
 
-	std::sort(&Scores[0] , &Scores[size]) ; 
+	std::sort(&Scores[0] , &Scores[size] , Compare) ; 
 
 	for (int i = 1 ; i <= size ; i++) {
 		std::cout << i << ") " <<  Scores[i - 1].name << " " << Scores[i - 1].score  << std::endl ; 
