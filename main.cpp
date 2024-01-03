@@ -593,7 +593,7 @@ void NewGame() {
 int main() {
 	Cls() ; 
 	PrintMenu() ; 
-	char Choose = int(Getch());
+	char Choose = Getch() ;
 
 	if (Choose == '1') {
 		NewGame() ; 
