@@ -45,7 +45,7 @@ void LeaderboardAdd(LB Data) {
 void LeaderboardRead() {
 	// Assume that the name of the file is Leaderboard.txt
 	int size = 0 ; 
-	int *Scores = nullptr ; 
+	LB *Scores = nullptr ; 
 
 	std::ifstream Leaderboard("Leaderboard.txt") ;
 
@@ -54,22 +54,23 @@ void LeaderboardRead() {
         return ;
     } 
 
-	while (Leaderboard) {
-		int Score ; 
-		Leaderboard >> Score ; 
-		int *Temp = new int[size + 1] ; 
+
+	LB Data ;
+
+	while (Leaderboard >> Data.score >> Data.name ) {
+		LB *Temp = new LB[size + 1] ; 
 
 		for (int i = 0 ; i < size ; i++) {
 			Temp[i] = Scores[i] ; 
 		}
-
-		Temp[size] = Score ; 
+		
+		Temp[size] = Data ; 
 
 		delete[] Scores ; 
 
 		size++ ; 
 
-		Scores = new int[size] ; 
+		Scores = new LB[size] ; 
 
 		for (int i = 0 ; i < size ; i++) {
 			Scores[i] = Temp[i] ; 
@@ -87,7 +88,7 @@ void LeaderboardRead() {
 	std::sort(&Scores[0] , &Scores[size]) ; 
 
 	for (int i = 1 ; i <= size ; i++) {
-		std::cout << i << ") " <<  Scores[i - 1] << std::endl ; 
+		std::cout << i << ") " <<  Scores[i - 1].name << " " << Scores[i - 1].score  << std::endl ; 
 
 	}
 
@@ -567,8 +568,11 @@ void NewGame() {
 			RightSum(BoardGame) ; 
 			RightShift(BoardGame) ; 
 
-		} else {
-			LeaderboardAdd(Score(BoardGame)) ; 
+		} else { 
+			LB Data ; 
+			Data.name = " " ; 
+			Data.score = Score(BoardGame) ; 
+			LeaderboardAdd(Data) ; 
 			return ; 
 		}
 
