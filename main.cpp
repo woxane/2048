@@ -28,7 +28,7 @@ int Score(int Board[4][4]) {
 }
 
 
-void LeaderboardAdd(int Score) {
+void LeaderboardAdd(LB Data) {
 	std::ofstream Leaderboard("Leaderboard.txt" , std::ios::app) ;
 
 	if (!Leaderboard){
@@ -36,7 +36,7 @@ void LeaderboardAdd(int Score) {
         return ;
     } 
 
-	Leaderboard << Score  << '\n'; 
+	Leaderboard << Data.score << " " << Data.name << '\n'; 
 
 	return ;  
 }
