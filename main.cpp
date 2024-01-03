@@ -574,8 +574,11 @@ void NewGame() {
 
 		} else { 
 			LB Data ; 
-			Data.name = " " ; 
-			Data.score = Score(BoardGame) ; 
+			Data.score = Score(BoardGame) ;  
+
+			std::cout << "Enter your name for the save last update : " ; 
+			std::cin >> Data.name ; 
+
 			LeaderboardAdd(Data) ; 
 			return ; 
 		}
