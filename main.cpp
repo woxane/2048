@@ -353,8 +353,6 @@ void PrintMenu() {
 	int WIDTH = 35 ;
 	int LENGTH = 9 ; 
 
-	Cls() ;
-
 	for (int Col = 0 ; Col < LENGTH ; Col++) {
 		// Horizontal Line Parts :
 		if (Col == 0 | Col == LENGTH / 2 | Col == LENGTH - 1) {
@@ -593,6 +591,7 @@ void NewGame() {
 
 
 int main() {
+	Cls() ; 
 	PrintMenu() ; 
 	char Choose = int(Getch());
 
