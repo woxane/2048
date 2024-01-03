@@ -9,6 +9,11 @@
 
 int MAIN_NUMBERS[4] = {2,2,2,4} ;
 
+//LB = Leaderboard
+struct LB {
+	std::string name ;
+	int score ;
+} ;
 
 
 int Score(int Board[4][4]) {
