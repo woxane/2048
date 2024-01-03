@@ -348,6 +348,16 @@ void DownSum(int Board[4][4]) {
 	} 	
 }
 
+void Redo(int Board[4][4] , int OrgBoard[4][4]) {
+	for (int i = 0 ; i < 4 ; i++) {
+		for (int j = 0 ; j < 4 ; j++) {
+				Board[i][j] = OrgBoard[i][j] ; 
+		}
+	}
+}
+
+
+
 
 void PrintMenu() {
 	int WIDTH = 35 ;
@@ -539,36 +549,55 @@ void DrawBoard(int Board[4][4]) {
 
 }
 
+void LastGameSaver(int Board[4][4] , int LastBoard[4][4]) {
+		for (int i = 0 ; i < 4 ; i++) {
+			for (int j = 0 ; j < 4 ; j++) {
+				LastBoard[i][j] = Board[i][j] ;  
+			}
+		} 
+
+}
+
 
 void NewGame() {
 	int BoardGame[4][4] = {{0,0,0,0} , {0,0,0,0} , {0,0,0,0} , {0,0,0,0}} ; 
 	RandomBoard(BoardGame) ; 
 
+	int LastBoardGame[4][4] ; 
+	bool First = true ; 
 
 	while (true) {
 		Cls() ; 
 		DrawBoard(BoardGame) ; 
 		char Input = Getch() ; 
 
-		if (Input == 'w') {
+		if (Input == 'w') {	
+			LastGameSaver(BoardGame , LastBoardGame) ; 
 			UpShift(BoardGame) ; 
 			UpSum(BoardGame) ; 
 			UpShift(BoardGame) ; 
 
 		} else if (Input == 'a') {
+			LastGameSaver(BoardGame , LastBoardGame) ; 
 			LeftShift(BoardGame) ; 
 			LeftSum(BoardGame) ; 
 			LeftShift(BoardGame) ; 
 
 		} else if (Input == 's') {
+			LastGameSaver(BoardGame , LastBoardGame) ; 
 			downShift(BoardGame) ; 
 			DownSum(BoardGame) ; 
 			downShift(BoardGame) ; 
 
 		} else if (Input == 'd') {
+			LastGameSaver(BoardGame , LastBoardGame) ; 
 			RightShift(BoardGame) ; 
 			RightSum(BoardGame) ; 
 			RightShift(BoardGame) ; 
+
+		} else if (Input == 'r')  {
+			Redo(BoardGame , LastBoardGame) ; 		
+			continue ; 			
 
 		} else { 
 			LB Data ; 
