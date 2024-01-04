@@ -12,6 +12,7 @@ int MAX_REDO = 4 ;
 int USED_REDO = 0 ; 
 
 //Colors (Based on the number) : 
+int COLOR_0 = 223 ; 
 int COLOR_2 = 177 ; 
 int COLOR_4 = 69; 
 int COLOR_8 = 31 ; 
@@ -475,8 +476,8 @@ void DrawBoard(int Board[4][4]) {
 	int BOARD_LENGTH = 23 ; // 4 * CUBE_LENGTH + 4 - 1 ;  
 
 
-	std::cout << std::endl << "Score : " << Score(Board) << std::endl ; 
-	std::cout << "Redo : " << MAX_REDO - USED_REDO  << std::endl ; 
+	std::cout << std::endl << "\033[38;5;222mScore : " << Score(Board) << "\033[0m" << std::endl ; 
+	std::cout << "\033[38;5;222mRedo : " << MAX_REDO - USED_REDO  << "\033[0m" << std::endl ; 
 
 	for (int Col = 0 ; Col < BOARD_LENGTH ; Col++ ) {
 		if (Col % 2 != 0) {
@@ -484,35 +485,94 @@ void DrawBoard(int Board[4][4]) {
 			continue ; 
 		} 
 		for (int Row = 0 ; Row < BOARD_WIDTH ; Row++ ) {
+			int i = Col / 6 ; 
+			int j = Row / 10 ; 
+			int Num = Board[i][j] ; 
+
+			std::string COLOR_COMMAND =  "\033[38;5;" ; 
+			switch (Num) {
+				case 0 : 
+					COLOR_COMMAND += std::to_string(COLOR_0) + "m" ;
+					break ; 
+
+				case 2 :
+					COLOR_COMMAND += std::to_string(COLOR_2) + "m" ;
+					break ; 
+				
+				case 4 :
+					COLOR_COMMAND += std::to_string(COLOR_4) + "m" ; 
+					break ; 
+				
+				case 8 : 
+					COLOR_COMMAND += std::to_string(COLOR_8) + "m" ; 
+					break ; 
+
+				case 16 : 
+					COLOR_COMMAND += std::to_string(COLOR_16) + "m" ; 
+					break ;
+
+				case 32 : 
+					COLOR_COMMAND += std::to_string(COLOR_32) + "m" ; 
+					break ;
+
+				case 64 : 
+					COLOR_COMMAND += std::to_string(COLOR_64) + "m" ; 
+					break ; 
+
+				case 128 : 
+					COLOR_COMMAND += std::to_string(COLOR_128) + "m" ;
+					break ;
+
+				case 256 : 
+					COLOR_COMMAND += std::to_string(COLOR_256) + "m" ; 
+					break ;
+
+				case 512 : 
+					COLOR_COMMAND += std::to_string(COLOR_512) + "m" ; 
+					break ; 
+
+				case 1024 : 
+					COLOR_COMMAND += std::to_string(COLOR_1024) + "m" ; 
+					break ; 
+
+				case 2048 :
+					COLOR_COMMAND += std::to_string(COLOR_2048) + "m" ; 
+					break ; 
+
+				default : 
+					COLOR_COMMAND += std::to_string(COLOR_2048) + "m" ;
+					break  ;
+
+			}
+		
 
 			// Up Part + 
 			if (Col % 6 == 0 ) {
 				// Left Part 
 				if (Row % 10 == 0) {
-					std::cout << "\u250F" ; 
+					COLOR_COMMAND += "\u250F\033[0m" ; 
 				// Right Part 
 				} else if (Row % 10 == 8) {
-					std::cout << "\u2513" << " " ; 
+					COLOR_COMMAND +=  "\u2513\033[0m" ;
+					COLOR_COMMAND += " " ;  
 					Row++ ; 
 				// Middle Part 
 				} else if (Row % 10 > 0 & Row % 10 < 8) {
-					std::cout << "\u2501" ;
+					COLOR_COMMAND += "\u2501\033[0m" ;
 				}
 
 			// Mid Part +
 			} else if (Col % 6 == 2 ) {
 				// Left Part 
 				if (Row % 10 == 0) {
-					std::cout << "\u2503" ;  
+					COLOR_COMMAND += "\u2503\033[0m" ;  
 				// Right Part 
 				} else if (Row % 10 == 8) {
-					std::cout << "\u2503" << " " ;  
+					COLOR_COMMAND += "\u2503\033[0m" ;
+					COLOR_COMMAND += " " ;  
 					Row++ ; 
 
 				} else {
-					int i = Col / 6 ; 
-					int j = Row / 10 ; 
-					int Num = Board[i][j] ; 
 					int NumLength= (std::to_string(Board[i][j])).length() ; 
 					
 					// WS = White Space 
@@ -520,74 +580,22 @@ void DrawBoard(int Board[4][4]) {
 					int RightWS = CUBE_WIDTH - NumLength - 2 - LeftWS ; 
 
 					for (int temp = 0 ; temp < LeftWS ; temp++) {
-						std::cout << " " ; 
+						COLOR_COMMAND += " " ; 
 						Row++ ; 
 					} 
 					
 					if (Num == 0) {
-						std::cout << " " ; 
+						COLOR_COMMAND += " " ; 
 						Row++ ; 
 
 					} else {
-						std::string COLOR_COMMAND =  "\033[38;5;" ; 
-						switch (Num) {
-							case 2 :
-								COLOR_COMMAND += std::to_string(COLOR_2) + "m" ;
-								break ; 
-							
-							case 4 :
-								COLOR_COMMAND += std::to_string(COLOR_4) + "m" ; 
-								break ; 
-							
-							case 8 : 
-								COLOR_COMMAND += std::to_string(COLOR_8) + "m" ; 
-								break ; 
-
-							case 16 : 
-								COLOR_COMMAND += std::to_string(COLOR_16) + "m" ; 
-								break ;
-
-							case 32 : 
-								COLOR_COMMAND += std::to_string(COLOR_32) + "m" ; 
-								break ;
-
-							case 64 : 
-								COLOR_COMMAND += std::to_string(COLOR_64) + "m" ; 
-								break ; 
-
-							case 128 : 
-								COLOR_COMMAND += std::to_string(COLOR_128) + "m" ;
-								break ;
-
-							case 256 : 
-								COLOR_COMMAND += std::to_string(COLOR_256) + "m" ; 
-								break ;
-
-							case 512 : 
-								COLOR_COMMAND += std::to_string(COLOR_512) + "m" ; 
-								break ; 
-
-							case 1024 : 
-								COLOR_COMMAND += std::to_string(COLOR_1024) + "m" ; 
-								break ; 
-
-							case 2048 :
-								COLOR_COMMAND += std::to_string(COLOR_2048) + "m" ; 
-								break ; 
-
-							default : 
-								COLOR_COMMAND += std::to_string(COLOR_2048) + "m" ;
-								break  ;
-
-						}
-
 						COLOR_COMMAND += std::to_string(Num) + "\033[0m" ; 
-						std::cout << COLOR_COMMAND ;
 						Row += NumLength ; 
+
 					}
 
 					for (int temp = 0 ; temp < RightWS ; temp++) {
-						std::cout << " " ; 
+						COLOR_COMMAND += " " ; 
 						Row++ ; 
 					}
 
@@ -598,17 +606,19 @@ void DrawBoard(int Board[4][4]) {
 			} else if (Col % 6 == 4) {
 				// Left Part 
 				if (Row % 10 == 0) {
-					std::cout << "\u2517" ; 
+					COLOR_COMMAND += "\u2517\033[0m" ; 
 				// Right Part 
 				} else if (Row % 10 == 8) {
-					std::cout << "\u251B" << " " ; 
+					COLOR_COMMAND += "\u251B\033[0m" ;
+					COLOR_COMMAND += " " ; 
 					Row++ ;   
 
 				} else if (Row % 10 > 0 & Row % 10 < 8) {
-					std::cout << "\u2501" ;
+					COLOR_COMMAND += "\u2501\033[0m" ;
 				} 
 			} 
 			
+			std::cout << COLOR_COMMAND ; 
 
 		}
 		std::cout << std::endl ;
