@@ -564,16 +564,15 @@ void LastGameSaver(int Board[4][4] , int LastBoard[4][4]) {
 
 
 bool CheckBoards(int Board1[4][4] , int Board2[4][4]) {
- for (int i = 0 ; i < 4 ; i++) {
-  for (int j = 0 ; j < 4 ; j++) {
-   if (Board1[i][j] != Board2[i][j]) {
-    return false ; 
-   }
-  }
- }
+	for (int i = 0 ; i < 4 ; i++) {
+		for (int j = 0 ; j < 4 ; j++) {
+			if (Board1[i][j] != Board2[i][j]) {
+				return false ; 
+			}
+		}
+ 	}
 
- return true ; 
-
+	return true ; 
 }
 
 
