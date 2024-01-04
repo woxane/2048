@@ -11,6 +11,20 @@ int MAIN_NUMBERS[4] = {2,2,2,4} ;
 int MAX_REDO = 4 ;
 int USED_REDO = 0 ; 
 
+//Colors (Based on the number) : 
+int COLOR_2 = 177 ; 
+int COLOR_4 = 69; 
+int COLOR_8 = 31 ; 
+int COLOR_16 = 28 ; 
+int COLOR_32 = 142 ; 
+int COLOR_64 = 214 ; 
+int COLOR_128 = 226 ; 
+int COLOR_256 = 21 ; 
+int COLOR_512 = 93 ; 
+int COLOR_1024 = 55 ; 
+int COLOR_2048 = 196 ; 
+
+
 //LB = Leaderboard
 struct LB {
 	std::string name ;
@@ -515,7 +529,60 @@ void DrawBoard(int Board[4][4]) {
 						Row++ ; 
 
 					} else {
-						std::cout << Num ; 
+						std::string COLOR_COMMAND =  "\033[38;5;" ; 
+						switch (Num) {
+							case 2 :
+								COLOR_COMMAND += std::to_string(COLOR_2) + "m" ;
+								break ; 
+							
+							case 4 :
+								COLOR_COMMAND += std::to_string(COLOR_4) + "m" ; 
+								break ; 
+							
+							case 8 : 
+								COLOR_COMMAND += std::to_string(COLOR_8) + "m" ; 
+								break ; 
+
+							case 16 : 
+								COLOR_COMMAND += std::to_string(COLOR_16) + "m" ; 
+								break ;
+
+							case 32 : 
+								COLOR_COMMAND += std::to_string(COLOR_32) + "m" ; 
+								break ;
+
+							case 64 : 
+								COLOR_COMMAND += std::to_string(COLOR_64) + "m" ; 
+								break ; 
+
+							case 128 : 
+								COLOR_COMMAND += std::to_string(COLOR_128) + "m" ;
+								break ;
+
+							case 256 : 
+								COLOR_COMMAND += std::to_string(COLOR_256) + "m" ; 
+								break ;
+
+							case 512 : 
+								COLOR_COMMAND += std::to_string(COLOR_512) + "m" ; 
+								break ; 
+
+							case 1024 : 
+								COLOR_COMMAND += std::to_string(COLOR_1024) + "m" ; 
+								break ; 
+
+							case 2048 :
+								COLOR_COMMAND += std::to_string(COLOR_2048) + "m" ; 
+								break ; 
+
+							default : 
+								COLOR_COMMAND += std::to_string(COLOR_2048) + "m" ;
+								break  ;
+
+						}
+
+						COLOR_COMMAND += std::to_string(Num) + "\033[0m" ; 
+						std::cout << COLOR_COMMAND ;
 						Row += NumLength ; 
 					}
 
