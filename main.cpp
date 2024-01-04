@@ -575,6 +575,58 @@ bool CheckBoards(int Board1[4][4] , int Board2[4][4]) {
 	return true ; 
 }
 
+bool CheckEnding(int Board[4][4]) {
+	for (int i = 0 ; i < 4 ; i++) {
+		for (int j = 0 ; j < 4 ; j++) {
+			if (Board[i][j] == 0) {
+				return true ; 
+			}
+		}
+	}
+
+	int LastBoard[4][4] ; 
+	LastGameSaver(Board , LastBoard) ; 
+	bool Status = false ; 
+
+	RightShift(Board) ; 
+	RightSum(Board) ; 
+	RightShift(Board) ; 
+	if (!CheckBoards(Board , LastBoard)) {
+		Status = true;
+	}
+	Redo(Board , LastBoard) ; 
+
+	LeftShift(Board) ; 
+	LeftSum(Board) ; 
+	LeftShift(Board) ; 
+	if (!CheckBoards(Board , LastBoard)) {
+		Status = true;
+	}
+	Redo(Board , LastBoard) ; 
+
+	UpShift(Board) ; 
+	UpSum(Board) ; 
+	UpShift(Board) ; 
+	if (!CheckBoards(Board , LastBoard)) {
+		Status = true;
+	}
+	Redo(Board , LastBoard) ; 
+
+	downShift(Board) ; 
+	DownSum(Board) ; 
+	downShift(Board) ; 
+	if (!CheckBoards(Board , LastBoard)) {
+		Status = true;
+	}
+	Redo(Board , LastBoard) ; 
+
+	if (Status) {
+		return true ; 
+	} 
+
+	return false ; 
+}
+
 
 void NewGame() {
 	int BoardGame[4][4] = {{0,0,0,0} , {0,0,0,0} , {0,0,0,0} , {0,0,0,0}} ; 
@@ -583,7 +635,7 @@ void NewGame() {
 	int LastBoardGame[4][4] ; 
 	bool First = true ; 
 
-	while (true) {
+	while (CheckEnding(BoardGame)) {
 		Cls() ; 
 		DrawBoard(BoardGame) ; 
 		char Input = Getch() ; 
@@ -636,7 +688,7 @@ void NewGame() {
 
 
 	}
-
+	std::cout << std::endl ; 	
 	std::cout << std::endl << "You've Lost . " ;
 
 } 
