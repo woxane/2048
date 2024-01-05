@@ -44,6 +44,23 @@ int Score(int Board[4][4]) {
 	return Sum ; 
 }
 
+void SaveBoardGame(int Board[4][4]) {
+	std::ofstream FileBoard("LastBoard.txt" , std::ios::trunc) ;
+
+	if (!Board) {
+		std::cout << "\033[38;5;169mYou have no saved games ! \033[0m" << std::endl ;
+		return ; 
+	}
+	
+	for (int i = 0 ; i < 4 ; i++) {
+		for (int j = 0 ; j < 4 ; j++) {
+			FileBoard << Board[i][j] << " " ; 	
+		}
+	}
+
+	return ; 
+
+}
 
 void LeaderboardAdd(LB Data) {
 	std::ofstream Leaderboard("Leaderboard.txt" , std::ios::app) ;
