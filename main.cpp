@@ -45,7 +45,7 @@ int Score(int Board[4][4]) {
 }
 
 void SaveBoardGame(int Board[4][4]) {
-	std::ofstream FileBoard("LastBoard.txt" , std::ios::trunc) ;
+	std::ofstream FileBoard("Lastboard.txt" , std::ios::trunc) ;
 
 	if (!FileBoard) {
 		std::cout << "\033[38;5;169mYou have no saved games ! \033[0m" << std::endl ;
@@ -757,9 +757,16 @@ void SaveData(int Board[4][4]) {
 }
 
 
-void NewGame() {
+void NewGame(bool SavedGame = false) {
 	int BoardGame[4][4] = {{0,0,0,0} , {0,0,0,0} , {0,0,0,0} , {0,0,0,0}} ; 
-	RandomBoard(BoardGame) ; 
+	
+	if (SavedGame) {
+		BoardGameRead(BoardGame) ; 
+
+	} else {
+		RandomBoard(BoardGame) ; 
+
+	}
 
 	int LastBoardGame[4][4] ; 
 	bool First = true ; 
@@ -803,6 +810,7 @@ void NewGame() {
 			continue ; 			
 
 		} else { 
+			SaveBoardGame(BoardGame) ; 
 			SaveData(BoardGame) ; 
 			return ; 
 		}
@@ -831,7 +839,12 @@ int main() {
 		LeaderboardRead() ; 
 
 	} else if (Choose == '3') {
+		Cls() ; 
+		NewGame(true) ; 
+
+	} else if (Choose == '4') {
 		return 0 ; 
+
 	} else {
 		std::cout << "\033[38;5;196mERR !\033[0m" ;
 	}
