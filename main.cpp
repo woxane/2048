@@ -704,6 +704,18 @@ bool CheckEnding(int Board[4][4]) {
 	return false ; 
 }
 
+void SaveData(int Board[4][4]) {
+	LB Data ; 
+	Data.score = Score(Board) ;  
+
+	std::cout << "Enter your name for the save last update : " ; 
+	std::cin >> Data.name ; 
+
+	LeaderboardAdd(Data) ; 
+	return ; 
+
+}
+
 
 void NewGame() {
 	int BoardGame[4][4] = {{0,0,0,0} , {0,0,0,0} , {0,0,0,0} , {0,0,0,0}} ; 
@@ -751,23 +763,18 @@ void NewGame() {
 			continue ; 			
 
 		} else { 
-			LB Data ; 
-			Data.score = Score(BoardGame) ;  
-
-			std::cout << "Enter your name for the save last update : " ; 
-			std::cin >> Data.name ; 
-
-			LeaderboardAdd(Data) ; 
+			SaveData(BoardGame) ; 
 			return ; 
 		}
 
 		RandomBoard(BoardGame , 1) ; 
 
-
 	}
-	std::cout << std::endl ; 	
-	std::cout << std::endl << "\033[38;5;196mYou've Lost . \033[0m" ;
 
+	std::cout << std::endl << "\033[38;5;196mYou've Lost . \033[0m" << std::endl ;
+
+	SaveData(BoardGame) ; 
+	return ; 
 } 
 
 
