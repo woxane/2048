@@ -388,45 +388,45 @@ void PrintMenu() {
 			for (int Row = 0 ; Row < WIDTH ; Row++) {
 				if ((WIDTH + 1) / 2 == Row ) { 
 					if (Col == 0 ) {
-						std::cout << "\u2531" ; 
+						std::cout << "\033[38;5;19m\u2531\033[0m" ; 
 						continue ; 
 						
 					} else if (Col == LENGTH / 2) {
 						
-						std::cout << "\u2538";
+						std::cout << "\033[38;5;19m\u2538" ;
 						continue ; 
 
 					}
 
 				// Corner Parts : 
 				} else if (Row == 0 & Col == 0) { 
-					std::cout << "\u250D" ; 
+					std::cout << "\033[38;5;19m\u250D\033[0m" ; 
 					continue ; 
 
 				} else if (Row == 0 & Col == LENGTH - 1) {
-					std::cout << "\u2515" ; 
+					std::cout << "\033[38;5;19m\u2515\033[0m" ; 
 					continue ; 
 
 				} else if (Row == WIDTH - 1 & Col == 0) {
-					std::cout << "\u2511" ;
+					std::cout << "\033[38;5;19m\u2511\033[0m" ;
 					continue ; 
 
 				} else if (Row == WIDTH - 1 & Col == LENGTH - 1) {
-					std::cout << "\u251B" ; 
+					std::cout << "\033[38;5;19m\u251B\033[0m" ; 
 					continue ; 
 
 				} else if (Row == WIDTH - 1 & Col == LENGTH / 2) {
-					std::cout << "\u2521" ; 
+					std::cout << "\033[38;5;19m\u2521\033[0m" ; 
 					continue ;
 
 				} else if (Row == 0 & Col ==  LENGTH / 2) {
-					std::cout << "\u2529" ; 
+					std::cout << "\033[38;5;19m\u2529\033[0m" ; 
 					continue ;
 
 				}
 			
 				if (Row )
-				std::cout << "\u2501";
+				std::cout << "\033[38;5;19m\u2501\033[0m";
 			}
 
 		}
@@ -437,22 +437,22 @@ void PrintMenu() {
 			for (int Row = 0 ; Row < WIDTH ; Row++) {
 				if (Row == 0 | Row == (WIDTH + 1 ) / 2 | Row == WIDTH - 1) {
 					if (!(Col > LENGTH / 2 & Row == (WIDTH + 1) / 2)) {
-						std::cout << "\u2503" ; 
+						std::cout << "\033[38;5;19m\u2503\033[0m" ; 
 						continue ;
 					}
 		 		} 
 
 				// Menu : 
 				if (Col == 2  & Row < WIDTH / 2) {
-					std::cout << "   " << "1. New Game" <<  "  " ; 
+					std::cout << "   " << "\033[38;5;34m1. New Game\033[0m" <<  "  " ; 
 					Row += 16 ; 
 
 				} else if (Col == 2 & Row > WIDTH / 2) {
-					std::cout << "2. Leaderboard" ;
+					std::cout << "\033[38;5;225m2. Leaderboard\033[0m" ;
 					Row += 14 ;
 
 				} else if (Col == 6) {
-					std::cout << "             " << "3. Exit" << "            " ;
+					std::cout << "             " << "\033[38;5;196m3. Exit\033[0m" << "            " ;
 					Row += 32 ;
 
 				}
