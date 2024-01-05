@@ -432,8 +432,11 @@ void PrintMenu() {
 						continue ; 
 						
 					} else if (Col == LENGTH / 2) {
-						
-						std::cout << "\033[38;5;19m\u2538" ;
+						std::cout << "\033[38;5;19m\u253D" ;
+						continue ; 
+
+					} else if (Col == LENGTH - 1) {
+						std::cout << "\033[38;5;19m\u253B" ;
 						continue ; 
 
 					}
@@ -476,10 +479,8 @@ void PrintMenu() {
 
 			for (int Row = 0 ; Row < WIDTH ; Row++) {
 				if (Row == 0 | Row == (WIDTH + 1 ) / 2 | Row == WIDTH - 1) {
-					if (!(Col > LENGTH / 2 & Row == (WIDTH + 1) / 2)) {
-						std::cout << "\033[38;5;19m\u2503\033[0m" ; 
-						continue ;
-					}
+					std::cout << "\033[38;5;19m\u2503\033[0m" ; 
+					continue ;
 		 		} 
 
 				// Menu : 
@@ -491,10 +492,14 @@ void PrintMenu() {
 					std::cout << "\033[38;5;225m2. Leaderboard\033[0m" ;
 					Row += 14 ;
 
-				} else if (Col == 6) {
-					std::cout << "             " << "\033[38;5;196m3. Exit\033[0m" << "            " ;
-					Row += 32 ;
+				} else if (Col == 6 & Row < WIDTH / 2) {
+					std::cout << "  " << "3. Saved Game" << "  " ; 
+					std::cout << "\033[38;5;19m\u2503\033[0m" ; 
+					Row += 17 ;  
 
+				} else if (Col == 6 & Row > WIDTH / 2) {
+					std::cout << "   " << "\033[38;5;196m4. Exit\033[0m" << "   " ; 
+					Row += 14 ;
 				}
 
 				std::cout << " " ;
