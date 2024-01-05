@@ -766,7 +766,7 @@ void NewGame() {
 
 	}
 	std::cout << std::endl ; 	
-	std::cout << std::endl << "You've Lost . " ;
+	std::cout << std::endl << "\033[38;5;196mYou've Lost . \033[0m" ;
 
 } 
 
@@ -786,7 +786,7 @@ int main() {
 	} else if (Choose == '3') {
 		return 0 ; 
 	} else {
-		std::cout << "ERR !" ;
+		std::cout << "\033[38;5;196mERR !\033[0m" ;
 	}
 
 
